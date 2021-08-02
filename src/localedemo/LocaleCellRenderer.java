@@ -37,7 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-class LocaleCellRenderer extends JLabel implements ListCellRenderer {
+class LocaleCellRenderer extends JLabel implements ListCellRenderer<Object> {
     public LocaleCellRenderer() {
         setOpaque(true);
     }
@@ -57,43 +57,13 @@ class LocaleCellRenderer extends JLabel implements ListCellRenderer {
         }
         LocaleItem item = (LocaleItem) value;
         setText(item.toString());
-/*
-        Set<LocaleItem> newLocales = PigDemo.this.newLocales;
-        if (newLocales.contains(item)) {
-            setForeground(Color.BLUE);
-            setIcon(PigDemo.dukeIcon);
-        } else if (!newLocales.isEmpty()) {
-            setIcon(PigDemo.javaIcon);
-        } else {
-            // When there are no remote locales, remote the icons.
-            setIcon(null);
-        }
-        LocaleItem current = PigDemo.this.current;
-        ComponentOrientation o = current.getOrientation();
-        applyComponentOrientation(o);
- 
-        if (item.isJRELocale()) {
-            setIcon(LocaleDemoUI.dukeIcon);
-        } else {
-            setIcon(LocaleDemoUI.unicodeIcon);
-        }
-*/
+
         switch (item.getAdapterType()) {
-            case JRE:
-                setIcon(LocaleDemoUI.dukeIcon);
-                break;
-            case CLDR:
-                setIcon(LocaleDemoUI.unicodeIcon);
-                break;
-            case HOST:
-                setIcon(LocaleDemoUI.hostIcon);
-                break;
-            case SPI:
-                setIcon(LocaleDemoUI.spiIcon);
-	        break;
-	    case FALLBACK:
-		setIcon(LocaleDemoUI.fallbackIcon);
-                break;
+            case JRE -> setIcon(LocaleDemoUI.dukeIcon);
+            case CLDR -> setIcon(LocaleDemoUI.unicodeIcon);
+            case HOST -> setIcon(LocaleDemoUI.hostIcon);
+            case SPI -> setIcon(LocaleDemoUI.spiIcon);
+            case FALLBACK -> setIcon(LocaleDemoUI.fallbackIcon);
         }
         return this;
     }

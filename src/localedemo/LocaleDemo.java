@@ -41,8 +41,6 @@ public class LocaleDemo {
     
     public static void main(final String[] s) {
         System.out.println(java.util.Locale.getDefault());
-        java.awt.EventQueue.invokeLater(() -> {
-            new LocaleDemoUI().setVisible(true);
-        });
+        java.awt.EventQueue.invokeLater(() -> new LocaleDemoUI().setVisible(true));
     }
 }
